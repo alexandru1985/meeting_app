@@ -28,8 +28,6 @@ class AttendeeController extends Controller
 			'name', 'companies', 'attendee_groups', 'confirmed'
 		]);
 
-		// dd($filters);
-
 		$eventId = $request->get('event_id');
 		$perPage = 10;
 		$page = $request->get('page', 1);
