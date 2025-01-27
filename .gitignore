@@ -12,7 +12,6 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
-.editorconfig
 CHANGELOG.md
 Homestead.json
 Homestead.yaml
