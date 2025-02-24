@@ -4,9 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
-use App\Services\FileExportStrategy;
-use App\Services\PdfFileExportStrategy;
-use App\Services\XlsxFileExportStrategy;
 
 class AppServiceProvider extends ServiceProvider
 {
