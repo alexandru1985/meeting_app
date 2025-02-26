@@ -76,7 +76,7 @@ class XlsxFileExportStrategyTest extends TestCase
 
     $eventData = [
       'name' => $event->name,
-      'location' => ['name' => 'Test Location'],
+      'location' => ['name' => 'LocationA'],
       'start_time' => '2023-01-01 00:00:00',
       'end_time' => '2023-01-01 23:59:59',
     ];
