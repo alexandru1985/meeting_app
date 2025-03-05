@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Attendee extends Model
 {
   protected $table = 'users';
-
   protected $fillable = ['name', 'company_id', 'attendee_group_id'];
 
   public function company()
