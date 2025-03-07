@@ -179,9 +179,6 @@ export default {
         this.addCompany();
       }
     },
-    created() {
-    this.fetchCompanies();
-  }
     addCompany() {
       axios.post('/api/companies', {
         name: this.companyForm.name
