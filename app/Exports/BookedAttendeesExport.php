@@ -29,7 +29,7 @@ class BookedAttendeesExport
   }
 
   public function styles(Worksheet $sheet)
-  {s
+  {
     $sheet->setCellValue('A1', 'Event: ' . $this->event['name']);
     $sheet->setCellValue('A2', 'Location: ' . $this->event['location']['name']);
     $sheet->setCellValue('A3', 'Start Date: ' . $this->event['start_time']);
