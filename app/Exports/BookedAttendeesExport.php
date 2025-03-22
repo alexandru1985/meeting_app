@@ -29,28 +29,24 @@ class BookedAttendeesExport
   }
 
   public function styles(Worksheet $sheet)
-  {
-    // Setarea caption-ului
+  {s
     $sheet->setCellValue('A1', 'Event: ' . $this->event['name']);
     $sheet->setCellValue('A2', 'Location: ' . $this->event['location']['name']);
     $sheet->setCellValue('A3', 'Start Date: ' . $this->event['start_time']);
     $sheet->setCellValue('A4', 'End Date: ' . $this->event['end_time']);
 
-    // Lăsăm celulele de la B1 la E1, B2 la E2 etc. goale
     for ($col = 'B'; $col <= 'E'; $col++) {
       for ($row = 1; $row <= 4; $row++) {
         $sheet->setCellValue($col . $row, '');
       }
     }
 
-    // Setarea headere-lor începând de la A5
     $sheet->setCellValue('A5', 'Id');
     $sheet->setCellValue('B5', 'Name');
     $sheet->setCellValue('C5', 'Company');
     $sheet->setCellValue('D5', 'Attendee Type');
     $sheet->setCellValue('E5', 'Table');
 
-    // Adăugarea datelor începând de la rândul 6
     $row = 6;
     foreach ($this->attendees as $attendee) {
       $sheet->setCellValue('A' . $row, $attendee['id']);
@@ -61,13 +57,11 @@ class BookedAttendeesExport
       $row++;
     }
 
-    // Alinierea la stânga pentru toată coloana A
     $sheet
       ->getStyle('A:A')
       ->getAlignment()
       ->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
-    // Adăugarea bold pentru A5, B5, C5, D5, E5
     $sheet
       ->getStyle('A5:E5')
       ->getFont()
