@@ -8,16 +8,6 @@ use App\Interfaces\FileExportStrategy;
 
 class PdfFileExportStrategy implements FileExportStrategy
 {
-  public function exportRegisteredAttendees(
-		array $attendees, 
-		array $event
-	): Response {
-    return Pdf::loadView('exports.registered_attendees', [
-      'attendees' => $attendees,
-      'event' => $event,
-    ])->download('registered_attendees.pdf');
-  }
-
   public function exportBookedAttendees(
 		array $tables, 
 		array $event
