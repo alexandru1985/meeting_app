@@ -41,29 +41,29 @@ class AuthController extends Controller
 
 	public function login(LoginRequest $request): JsonResponse
 	{
-		if (Auth::attempt([
-			'email' => $request->email, 
-			'password' => $request->password
-			])) {
-			$user = Auth::user();
-			$token = $user->createToken('token')->accessToken;
+		if (!Auth::attempt([
+				'email' => $request->email, 
+				'password' => $request->password
+		])) {
+				return response()->json([
+						'success' => true,
+						'statusCode' => 401,
+						'message' => 'Unauthorized.',
+						'errors' => 'Unauthorized',
+				], 401);
+		}
 
-			$user['token'] = 	$token;
+		$user = Auth::user();
+		$token = $user->createToken('token')->accessToken;
 
-			return response()->json([
+		$user['token'] = $token;
+
+		return response()->json([
 				'success' => true,
 				'statusCode' => 200,
 				'message' => 'User has been logged successfully.',
 				'data' => $user,
-			], 200);
-		} else {
-			return response()->json([
-				'success' => true,
-				'statusCode' => 401,
-				'message' => 'Unauthorized.',
-				'errors' => 'Unauthorized',
-			], 401);
-		}
+		], 200);
 	}
 
 	public function refreshToken(RefreshTokenRequest $request): JsonResponse
@@ -95,3 +95,4 @@ class AuthController extends Controller
 		], 204);
 	}
 }
+
