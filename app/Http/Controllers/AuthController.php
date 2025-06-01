@@ -20,7 +20,7 @@ class AuthController extends Controller
 		$userData['email_verified_at'] = now();
 		$user = User::create($userData);
 
-		$response = Http::post('meeting-app-nginx/oauth/token', [
+		$response = Http::post('meeting_app/oauth/token', [
 			'grant_type' => 'password',
 			'client_id' => env('PASSPORT_PASSWORD_CLIENT_ID'),
 			'client_secret' => env('PASSPORT_PASSWORD_SECRET'),
@@ -46,17 +46,9 @@ class AuthController extends Controller
 			'password' => $request->password
 			])) {
 			$user = Auth::user();
+			$token = $user->createToken('token')->accessToken;
 
-			$response = Http::post(env('OAUTH_URL'), [
-				'grant_type' => 'password',
-				'client_id' => env('PASSPORT_PASSWORD_CLIENT_ID'),
-				'client_secret' => env('PASSPORT_PASSWORD_SECRET'),
-				'username' => $request->email,
-				'password' => $request->password,
-				'scope' => '',
-			]);
-
-			$user['token'] = $response->json();
+			$user['token'] = 	$token;
 
 			return response()->json([
 				'success' => true,
